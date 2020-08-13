@@ -89,7 +89,7 @@ input[type=submit] {
 
 <script>
     // import jquery here
-    var getUrlParameter = function getUrlParameter(sParam) {
+    $.getUrlParameter = function(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
@@ -106,6 +106,7 @@ var id = getUrlParameter('user_id');
 var user = getUrlParameter('username');
 console.log(id, user);
 };
+console.log($.getUrlParameter('user_id'));
     
     $('#payForm').submit(function() {
     // const data = $('#payForm').serializeArray();
