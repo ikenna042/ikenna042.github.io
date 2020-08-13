@@ -80,7 +80,7 @@ input[type=submit] {
     
   </form>
 </div>
-<button onclick="myFunction()">Click me</button>
+<button onclick="GetURLParameter(sParam)">Click me</button>
 
 </body>
 </html>
@@ -89,6 +89,25 @@ input[type=submit] {
 
 <script>
     // import jquery here
+    function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+
+    var id = GetURLParameter('user_id');
+    var user = GetURLParameter('username');
+    console.log(id, user);
+
+}​
+
     
     $('#payForm').submit(function() {
     // const data = $('#payForm').serializeArray();
