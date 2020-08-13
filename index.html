@@ -127,7 +127,7 @@ $( "#payForm" ).submit(function( event ) {
         console.log(response);
         if (response.success) {
             alert('Successful... Pending Approval');
-            $(this).closest('form').find('input[type=text]').val('');
+            $("#payForm").trigger("reset");
         } else {
             alert('Failed');
         }
