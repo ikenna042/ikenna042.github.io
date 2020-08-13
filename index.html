@@ -80,7 +80,6 @@ input[type=submit] {
     
   </form>
 </div>
-<button onclick="getUrlParameter(sParam)">Click me</button>
 
 </body>
 </html>
@@ -113,6 +112,17 @@ var formData = {
 }
 formData.user_type = 'USER'
 console.log(formData);
+
+$( "#payForm" ).submit(function( event ) {
+  alert( "Handler for .submit() called." );
+  var fd = {
+            'phone'              : $('input[name=phone]').val(),
+            'amount'             : $('input[name=amount]').val(),
+            'description'    : $('input[name=description]').val()
+        };
+  console.log(fd);
+  event.preventDefault();
+});
     
     // $('#payForm').submit(function() {
     // const data = $('#payForm').serializeArray();
