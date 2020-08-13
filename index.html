@@ -128,6 +128,7 @@ $( "#payForm" ).submit(function( event ) {
         if (response.success) {
             alert('Successful... Pending Approval');
             $("#payForm").trigger("reset");
+            $('#payForm').hide();
         } else {
             alert('Failed');
         }
