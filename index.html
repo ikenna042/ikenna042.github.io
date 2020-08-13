@@ -111,7 +111,7 @@ console.log(formData);
 $( "#payForm" ).submit(function( event ) {
   alert( "Handler for .submit() called." );
   var fd = {
-            'phone'              : $('input[name=phone]').val(),
+            'payment_mobile'              : $('input[name=phone]').val(),
             'amount'             : $('input[name=amount]').val(),
             'description'    : $('input[name=description]').val()
   };
