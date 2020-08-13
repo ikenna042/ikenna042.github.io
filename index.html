@@ -103,14 +103,9 @@ input[type=submit] {
     }
 };
 var id = $.getUrlParameter('user_id');
-var user = $.getUrlParameter('username');
-var type = $.getUrlParameter('user_type');
 var formData = {
   user_id: id,
-  username: user,
-  user_type: type
 }
-formData.user_type = 'USER'
 console.log(formData);
 
 $( "#payForm" ).submit(function( event ) {
@@ -119,7 +114,9 @@ $( "#payForm" ).submit(function( event ) {
             'phone'              : $('input[name=phone]').val(),
             'amount'             : $('input[name=amount]').val(),
             'description'    : $('input[name=description]').val()
-        };
+  };
+  var id = $.getUrlParameter('user_id');
+  fd.user_id = id;
   console.log(fd);
   event.preventDefault();
 });
