@@ -80,7 +80,7 @@ input[type=submit] {
     
   </form>
 </div>
-<button onclick="GetURLParameter(sParam)">Click me</button>
+<button onclick="getUrlParameter(sParam)">Click me</button>
 
 </body>
 </html>
@@ -89,25 +89,23 @@ input[type=submit] {
 
 <script>
     // import jquery here
-    function GetURLParameter(sParam)
-{
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++)
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam)
-        {
-            return sParameterName[1];
+    var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
         }
     }
-
-    var id = GetURLParameter('user_id');
-    var user = GetURLParameter('username');
-    console.log(id, user);
-
-}​
-
+};
+var id = getUrlParameter('user_id');
+var user = getUrlParameter('username');
+console.log(id, user);
     
     $('#payForm').submit(function() {
     // const data = $('#payForm').serializeArray();
@@ -124,20 +122,18 @@ input[type=submit] {
     //             }
     //        }
     //     });
-
-    
     });
 
-    function myFunction() {
-  var formData = {
-	payment_mobile:"08164114571",
-    amount:"999",
-    description:"Next Subscription",
-    username: "ikenna",
-    user_id: "5ea299defdbf0a26ff0777c6",
-    user_type: "USER"
-    }; //Array 
-  alert(formData.JSON);
+  function myFunction() {
+    var formData = {
+      payment_mobile: "08164114571",
+      amount: "999",
+      description: "Next Subscription",
+      username: "ikenna",
+      user_id: "5ea299defdbf0a26ff0777c6",
+      user_type: "USER"
+      };
+  alert(formData);
 
 $.ajax({
     url : "https://getecoworld.com:5000/api/v1/payments", // Url of backend (can be python, php, etc..)
