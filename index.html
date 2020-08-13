@@ -109,10 +109,9 @@ var formData = {
 console.log(formData);
 
 $( "#payForm" ).submit(function( event ) {
-  alert( "Handler for .submit() called." );
   var fd = {
-            'payment_mobile'              : $('input[name=phone]').val(),
-            'amount'             : $('input[name=amount]').val(),
+            'payment_mobile' : $('input[name=phone]').val(),
+            'amount'         : $('input[name=amount]').val(),
             'description'    : $('input[name=description]').val()
   };
   var id = $.getUrlParameter('user_id');
@@ -128,6 +127,7 @@ $( "#payForm" ).submit(function( event ) {
         console.log(response);
         if (response.success) {
             alert('Successful... Pending Approval');
+            $(this).closest('form').find('input[type=text]').val('');
         } else {
             alert('Failed');
         }
@@ -136,7 +136,8 @@ $( "#payForm" ).submit(function( event ) {
     error: function (jqXHR, textStatus, errorThrown) {
 		console.log(jqXHR);
       	console.log(textStatus);
-      	console.log(errorThrown);
+        console.log(errorThrown);
+        alert(errorThrown);
     }
 });
 });
