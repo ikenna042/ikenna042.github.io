@@ -123,7 +123,7 @@ $( "#payForm" ).submit(function( event ) {
     url : "https://getecoworld.com:5000/api/v1/payments", // Url of backend (can be python, php, etc..)
     type: "POST", // data type (can be get, post, put, delete)
     data : fd, // data in json format
-  	async : false, // enable or disable async (optional, but suggested as false if you need to populate data afterwards)
+  //	async : false, // enable or disable async (optional, but suggested as false if you need to populate data afterwards)
     success: function(response, textStatus, jqXHR) {
         console.log(response);
         if (response.success) {
