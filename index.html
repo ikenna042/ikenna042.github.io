@@ -46,6 +46,11 @@ input[type=submit] {
 .submit {
 	align-text: center;
 }
+
+.sent {
+  color: greenyellow;
+}
+
 </style>
 </head>
 <body>
@@ -53,32 +58,41 @@ input[type=submit] {
 <h3 class="heading">Payment</h3>
 
 <div class="container">
-<p>
-	To subscribe, make payment to the UPI handle <strong>9971166523@UPI</strong>
-</p>
-<p>
-	Subscription Fee: <strong>Rs 999</strong><br>
-  	Validity: <strong>6 Months
-</p>
-  <form id="payForm">
-    <label for="phone">Phone number</label>
-    <input type="text" id="phone" name="phone" placeholder="Enter the mobile number used for payment...">
-    
-    <label for="amount">Amount</label>
-    <input type="text" id="amount" name="amount" placeholder="Rs 999">
-  
-    <label for="description">Description</label>
-    <input type="text" id="description" name="description" placeholder="Short description about this payment...">
-<hr>
+<div id="payBody">
   <p>
-  	The service would be activated within 4 hours of payment confirmation.
+    To subscribe, make payment to the UPI handle <strong>9971166523@UPI</strong>
   </p>
-
-	<div class="submit">
-    	<input type="submit" value="Submit">
-    </div>
+  <p>
+    Subscription Fee: <strong>Rs 999</strong><br>
+      Validity: <strong>6 Months
+  </p>
+    <form id="payForm">
+      <label for="phone">Phone number</label>
+      <input type="text" id="phone" name="phone" placeholder="Enter the mobile number used for payment...">
+      
+      <label for="amount">Amount</label>
+      <input type="text" id="amount" name="amount" placeholder="Rs 999">
     
-  </form>
+      <label for="description">Description</label>
+      <input type="text" id="description" name="description" placeholder="Short description about this payment...">
+  <hr>
+    <p>
+      The service would be activated within 4 hours of payment confirmation.
+    </p>
+  
+    <div class="submit">
+        <input type="submit" value="Submit">
+      </div>
+      
+    </form>
+</div>
+<div id="sent">
+  <p>Payment record sent successfully!</p>
+  <p>
+    The service would be activated within 4 hours of payment confirmation.
+  </p>
+</div>
+
 </div>
 
 </body>
@@ -87,6 +101,7 @@ input[type=submit] {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
+  $('#sent').hide();
     // import jquery here
     $.getUrlParameter = function(sParam) {
     var sPageURL = window.location.search.substring(1),
@@ -128,7 +143,8 @@ $( "#payForm" ).submit(function( event ) {
         if (response.success) {
             alert('Successful... Pending Approval');
             $("#payForm").trigger("reset");
-            $('#payForm').hide();
+            $('#payBody').hide();
+            $('#sent').show();
         } else {
             alert('Failed');
         }
