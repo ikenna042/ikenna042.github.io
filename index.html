@@ -102,11 +102,10 @@ input[type=submit] {
             return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
         }
     }
-var id = getUrlParameter('user_id');
-var user = getUrlParameter('username');
-console.log(id, user);
 };
-console.log($.getUrlParameter('user_id'));
+var id = $.getUrlParameter('user_id');
+var user = $.getUrlParameter('username');
+console.log(id, user);
     
     $('#payForm').submit(function() {
     // const data = $('#payForm').serializeArray();
