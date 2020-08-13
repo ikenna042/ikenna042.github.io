@@ -105,6 +105,9 @@ input[type=submit] {
 };
 
     
+    
+
+  function myFunction() {
     $('#payForm').submit(function() {
       var id = $.getUrlParameter('user_id');
       var user = $.getUrlParameter('username');
@@ -118,32 +121,7 @@ input[type=submit] {
         description: $('input[name=description]').val(),
       }
       console.log(formData);
-    // const data = $('#payForm').serializeArray();
-    // console.log(data);
-    //     $.ajax({
-    //        url: 'https://getecoworld.com:5000/api/v1/payments',
-    //        data: data,
-    //        method: 'post',
-    //        success: function(response) {
-    //             if(response.success) {
-	// 				 alert(response);
-    //             } else {
-	// 				 alert(response);
-    //             }
-    //        }
-    //     });
     });
-
-  function myFunction() {
-    var formData = {
-      payment_mobile: "08164114571",
-      amount: "999",
-      description: "Next Subscription",
-      username: "ikenna",
-      user_id: "5ea299defdbf0a26ff0777c6",
-      user_type: "USER"
-      };
-  alert(formData);
 
 $.ajax({
     url : "https://getecoworld.com:5000/api/v1/payments", // Url of backend (can be python, php, etc..)
