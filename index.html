@@ -118,7 +118,7 @@ $( "#payForm" ).submit(function( event ) {
   var id = $.getUrlParameter('user_id');
   fd.user_id = id;
   console.log(fd);
- // event.preventDefault();
+  event.preventDefault();
  $.ajax({
     url : "https://getecoworld.com:5000/api/v1/payments", // Url of backend (can be python, php, etc..)
     type: "POST", // data type (can be get, post, put, delete)
