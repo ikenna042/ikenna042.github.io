@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	}
+* {box-sizing: border-box;}
+
+.heading {
+	margin-left: 10px;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #1a75ff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+}
+
+.container {
+  border-radius: 5px;
+  padding: 20px;
+  background: white;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+}
+.submit {
+	align-text: center;
+}
+
+.sent {
+  color: greenyellow;
+}
+
+</style>
+</head>
+<body>
+
+<h3 class="heading">Payment</h3>
+
+<div class="container">
+<div id="payBody">
+  <p>
+    To subscribe, make payment to the UPI handle <strong>9971166523@UPI</strong>
+  </p>
+  <p>
+    Subscription Fee: <strong>Rs 999</strong><br>
+      Validity: <strong>6 Months
+  </p>
+    <form id="payForm">
+      <label for="phone">Phone number</label>
+      <input type="text" id="phone" name="phone" placeholder="Enter the mobile number used for payment...">
+      
+      <label for="amount">Amount</label>
+      <input type="text" id="amount" name="amount" placeholder="Rs 999">
+    
+      <label for="description">Description</label>
+      <input type="text" id="description" name="description" placeholder="Short description about this payment...">
+  <hr>
+    <p>
+      The service would be activated within 4 hours of payment confirmation.
+    </p>
+  
+    <div class="submit">
+        <input type="submit" value="Submit">
+      </div>
+      
+    </form>
+</div>
+<div id="sent">
+  <p>Payment record sent successfully!</p>
+  <p>
+    The service would be activated within 4 hours of payment confirmation.
+  </p>
+</div>
+
+</div>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $('#sent').hide();
+    // import jquery here
+    $.getUrlParameter = function(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+var id = $.getUrlParameter('user_id');
+var formData = {
+  user_id: id,
+}
+console.log(formData);
+
+$( "#payForm" ).submit(function( event ) {
+  var fd = {
+            'payment_mobile' : $('input[name=phone]').val(),
+            'amount'         : $('input[name=amount]').val(),
+            'description'    : $('input[name=description]').val()
+  };
+  var id = $.getUrlParameter('user_id');
+  fd.user_id = id;
+  console.log(fd);
+  event.preventDefault();
+ $.ajax({
+    url : "https://getecoworld.com:5000/api/v1/payments", // Url of backend (can be python, php, etc..)
+    type: "POST", // data type (can be get, post, put, delete)
+    data : fd, // data in json format
+  //	async : false, // enable or disable async (optional, but suggested as false if you need to populate data afterwards)
+    success: function(response, textStatus, jqXHR) {
+        console.log(response);
+        if (response.success) {
+            alert('Successful... Pending Approval');
+            $("#payForm").trigger("reset");
+            $('#payBody').hide();
+            $('#sent').show();
+        } else {
+            alert('Failed');
+        }
+        
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+		console.log(jqXHR);
+      	console.log(textStatus);
+        console.log(errorThrown);
+        alert(errorThrown);
+    }
+});
+});
+    
+    // $('#payForm').submit(function() {
+    // const data = $('#payForm').serializeArray();
+    // console.log(data);
+    //     $.ajax({
+    //        url: 'https://getecoworld.com:5000/api/v1/payments',
+    //        data: data,
+    //        method: 'post',
+    //        success: function(response) {
+    //             if(response.success) {
+	// 				 alert(response);
+    //             } else {
+	// 				 alert(response);
+    //             }
+    //        }
+    //     });
+    // });
+
+//   function myFunction() {
+//     var formData = {
+//       payment_mobile: "08164114571",
+//       amount: "999",
+//       description: "Next Subscription",
+//       username: "ikenna",
+//       user_id: "5ea299defdbf0a26ff0777c6",
+//       user_type: "USER"
+//       };
+//   alert(formData);
+
+// $.ajax({
+//     url : "https://getecoworld.com:5000/api/v1/payments", // Url of backend (can be python, php, etc..)
+//     type: "POST", // data type (can be get, post, put, delete)
+//     data : formData, // data in json format
+//   	async : false, // enable or disable async (optional, but suggested as false if you need to populate data afterwards)
+//     success: function(response, textStatus, jqXHR) {
+//         console.log(response);
+//         if (response.success) {
+//             alert('Successful... Pending Approval');
+//         } else {
+//             alert('Failed');
+//         }
+        
+//     },
+//     error: function (jqXHR, textStatus, errorThrown) {
+// 		console.log(jqXHR);
+//       	console.log(textStatus);
+//       	console.log(errorThrown);
+//     }
+// });
+// }
+    
+</script>
