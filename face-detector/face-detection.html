@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script defer src="face-api.min.js"></script>
+    <script defer src="app.js"></script>
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+    
+        canvas {
+          position: absolute;
+        }
+    </style>
+</head>
+<body>
+	<div id="container">
+    <div id="loading" class="text-center">
+      <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+    </div>
+    </div>
+        
+		<video width="720" height="560" autoplay="true"></video>
+	</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<!-- <button class="btn" onclick="startWebCam()">Start</button> -->
+</body>
+</html>
